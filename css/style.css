@@ -1,0 +1,74 @@
+*{
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+}
+
+.topbar{
+	background-color: #222;
+	text-align: center;
+	color: white;
+	text-transform: uppercase;
+	padding: 5px;
+}
+.title{
+	color: white;
+	text-decoration: none;
+}
+.loginPanel{
+	float: right;
+	padding: 5px;
+	background-color: #222;
+	color: white;
+	text-transform: uppercase;
+}
+.loginPanel form  table tbody tr td button{
+	width: 100%;
+}
+
+.welcomeText{
+	position: relative;
+	float: left;
+	top: -30px;
+}
+.welcomeName{
+	color: white;
+}
+.logoutButton{
+	position: relative;
+	float: right;
+	top: -40px;
+	width: 200px;
+	height: 45px;
+	right: -5px;
+	border: none;
+	background-color: #222;
+	color: white;
+	text-transform: uppercase;
+	font-size: 30px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.logoutButton:hover{
+	background-color: #444;
+}
+
+.registerPanel{
+	margin-top: 5%;
+	margin-left: 25%;
+	margin-right: 25%;
+	background-color: white;
+	border-radius: 5px;
+	padding: 10px;
+	display: none;
+}
+.registerPanel form{
+	width: 100%;
+}
+.registerPanel form table{
+	width: 100%;
+}
+.registerPanel form table tr td{
+	width: 50%;
+	text-transform: uppercase;
+}
