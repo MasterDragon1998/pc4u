@@ -9,6 +9,12 @@ if(!$usermanager->isLogedin){
 	header("location:index.php");
 }
 if(isset($_GET["updateUser"])&&isset($_GET["userid"])){
+	if($usermanager->user->id!=$_GET["userid"]){
+		$cuser = getUserById($connect,$_GET["userid"]);
+		header("location:user.php?username=$cuser->username");
+		return false;
+	}
+
 	$cuser = getUserById($connect,$_GET["userid"]);
 	$cuser->username = $_POST["username"];
 	$cuser->email = $_POST["email"];
@@ -20,6 +26,12 @@ if(isset($_GET["updateUser"])&&isset($_GET["userid"])){
 }
 
 $user = getUserByUsername($connect,$_GET["username"]);
+
+if($usermanager->user->id==$user->id){
+	$changeAuth = true;
+}else{
+	$changeAuth = false;
+}
 
 ?>
 <!DOCTYPE html>
@@ -39,22 +51,37 @@ $user = getUserByUsername($connect,$_GET["username"]);
 				<table border="1" class="userinfoTable">
 					<tr>
 						<td>Username</td>
-						<td><input type="text" name="username" value="<?php echo $user->username; ?>"></td>
+						<td><?php if($changeAuth){ ?>
+							<input type="text" name="username" value="<?php echo $user->username; ?>">
+							<?php }else{ echo $user->username; } ?>
+						</td>
 					</tr>
 					<tr>
 						<td>E-Mail</td>
-						<td><input type="text" name="email" value="<?php echo $user->email; ?>"></td>
+						<td>
+							<?php if($changeAuth){ ?>
+							<input type="text" name="email" value="<?php echo $user->email; ?>">
+							<?php }else{ echo $user->email; } ?>
+						</td>
 					</tr>
 					<tr>
 						<td>Voornaam</td>
-						<td><input type="text" name="first_name" value="<?php echo $user->first_name; ?>"></td>
+						<td>
+							<?php if($changeAuth){ ?>
+							<input type="text" name="first_name" value="<?php echo $user->first_name; ?>">
+							<?php }else{ echo $user->first_name; } ?>
+						</td>
 					</tr>
 					<tr>
 						<td>Achternaam</td>
-						<td><input type="text" name="last_name" value="<?php echo $user->last_name; ?>"></td>
+						<td>
+							<?php if($changeAuth){ ?>
+							<input type="text" name="last_name" value="<?php echo $user->last_name; ?>">
+							<?php }else{ echo $user->last_name; } ?>
+						</td>
 					</tr>
 				</table>
-				<button style="width:100%;" type="submit">Save Changes</button>
+				<?php if($changeAuth){ ?><button style="width:100%;" type="submit">Save Changes</button><?php } ?>
 			</form>
 		</div>
 
