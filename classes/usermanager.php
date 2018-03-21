@@ -16,6 +16,7 @@ Class UserManager{
 		if(isset($_SESSION["user"])){
 			$this->isLogedin = true;
 			$this->user = unserialize($_SESSION["user"]);
+			$this->user->sync($conn);
 		}
 		$this->checkHeaders();
 	}
